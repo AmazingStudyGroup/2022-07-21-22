@@ -86,19 +86,120 @@ MAX/MIN 은 앞서 살펴본 COUNT, SUM 함수 처럼 DISTINCT나 ALL을 지정�
 
 - 날짜 데이터에 MAX/MIN 함수 사용하기
 ```SQL
+-- 부서 번호가 20인 사원의 입사일 중 제일 오래된 입사일 출력하기
+SELECT MIN(HIREDATE)
+  FROM EMP
+ WHERE DEPTNO = 20;
 ```
+#### 평균 값을 구하는 AVG 함수
+> 숫자 또는 숫자로 암시적 형변환이 가능한 데이터만 사용할 수 있다.
 ```SQL
+-- 부서 번호가 30인 사원들의 평균 급여 출력하기
+SELECT AVG(SAL)
+  FROM EMP
+ WHERE DEPTNO = 30;
 ```
+### 07-2 결과 값을 원하는 열로 묶어 출력하는 GROUP BY절
 ```SQL
+-- 각 부서별 평균 급여 출력하기(하드코딩 ver)
+SELECT ABG(SAL) FROM EMP WHERE DEPTNO = 10;
+SELECT ABG(SAL) FROM EMP WHERE DEPTNO = 20;
+SELECT ABG(SAL) FROM EMP WHERE DEPTNO = 30;
+...
+
+-- 집합 연산자를 사용해서 출력하기
+SELECT AVG(SAL), '10' AS DEPTNO FROM EMP WHERE DEPTNO = 10
+UNION ALL
+SELECT AVG(SAL), '20' AS DEPTNO FROM EMP WHERE DEPTNO = 20
+UNION ALL
+SELECT AVG(SAL), '30' AS DEPTNO FROM EMP WHERE DEPTNO = 30
+...
 ```
+#### GROUP BY절의 기본 사용법
+- GROUP BY 절에 명시하는 열은 여러 개 지정할 수 있다.     
+- 먼저 지정한 열로 대그룹을 나누고, 그 다음 지정한 열로 소그룹을 나눈다.         
+- GROUP BY 절에는 별칭이 인식되지 않는다!      
 ```SQL
+-- 부서별 평균 급여 출력하기
+SELECT AVG(SAL), DEPTNO
+  FROM EMP
+GROUP BY DEPTNO;
+
+-- 부서 번호 및 직책별 평균 급여로 정렬하기
+SELECT DEPTNO, JOB, AVG(SAL)
+  FROM EMP
+GROUP BY DEPTNO, JOB
+ORDER BY DEPTNO, JOB;
+```
+- GROUP BY절 사용시 유의점    
+다중행 함수를 사용하지 않은 일반 열은 GROUP BY 절에 명시하지 않으면    
+SELECT절에서 사용할 수 없다.
+```sql
+-- GROUP BY 절에는 없는 열을 SELECT 절에 포함했을 경우 : 오류발생
+SELECT ENAME, DEPTNO, AVG(SAL)
+  FROM EMP
+GROUP BY DEPTNO;
 ```
 
+### 07-3 GROUP BY 절에 조건을 줄 때 사용하는 HAVING절
+HAVING절은 SELECT문에 GROUP BY절이 존재할 때만, GROUP BY절 바로 다음에 작성할 수 있다.     
+GROUP BY 절을 통해 그룹화된 결과 값의 범위를 제한하는 데 사용한다.
+```sql
+-- 각 부서의 직책별 평균 급여를 구하되, 그 평균 급여가 2000이상인 그룹만 출력
+SELECT DEPTNO, JOB, AVG(SAL)
+  FROM EMP
+GROUP BY DEPTNO, JOB
+  HAVING AVG(SAL) >= 2000
+ORDER BY DEPTNO, JOB;
+```
+- HAVING vs WHERE     
+WHERE절은 출력 대상 행을 제한하고, HAVING절은 그룹화된 대상을 출력에서 제한한다.    
 
+#### WHERE절과 HAVING절의 차이점
+```sql
+-- HAVING절만 사용
+SELECT DEPTNO, JOB, AVG(SAL)
+  FROM EMP
+GROUP BY DEPTNO, JOB
+  HAVING AVG(SAL) >=2000
+ORDER BY DEPTNO, JOB;
+```
+|DEPTNO|JOB|AVG(SAL)|
+|----|----|-----|
+|10|MANAGER|2450|
+|10|PRESIDENT|5000|
+|20|ANALYST|3000|
+|20|MANAGER|2975|
+|30|MANAGER|2850|
+```sql
+-- WHERE절과 HAVING절 모두 사용(WHERE절이 GROUP BY절보다 먼저 실행)
+SELECT DEPTNO, JOB, AVG(SAL)
+  FROM EMP
+ WHERE SAL <= 3000
+GROUP BY DEPTNO, JOB
+  HAVING AVG(SAL) >=2000
+ORDER BY DEPTNO, JOB;
+```
+|DEPTNO|JOB|AVG(SAL)|
+|----|----|-----|
+|10|MANAGER|2450|
+|10|ANALYST|3000|
+|20|MANAGER|2975|
+|30|MANAGER|2850|
 
+1) WHERE절을 실행한 후에 나온 결과 데이터가     
+2) GROUP BY절을 통해 그룹화가 진행되고,    
+3) HAVING절에서 그룹을 제한한다.     
 
-
-
+```sql
+-- HAVING절을 사용하여 EMP 테이블의 부서별 직책의 평균 급여가 500 이상인
+-- 사원들의 부서번호, 직책, 부서별 직책의 평균 급여가 출력되도록 작성해라
+SELECT DEPTNO, JOB, AVG(SAL)
+  FROM EMP
+GROUP BY DEPTNO, JOB
+  HAVING AVG(SAL) >= 500
+ORDER BY DEPTNO, JOB;
+```
 
 
 
