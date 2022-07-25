@@ -102,6 +102,7 @@ SELECT DEPTNO,
   FROM EMP
 GROUP BY DEPTNO;
 ```
+
 |DEPTNO|ENAMES|최종 결과|
 |:---:|:---:|:---:|
 |a,b|0 0|0|
@@ -119,6 +120,7 @@ SELECT DEPTNO,
   FROM EMP
 GROUP BY DEPTNO;
 ```
+
 |DEPTNO|ENAMES|
 |---:|:---:|
 |10|KING, CLARK, MILLER|
@@ -138,6 +140,7 @@ SELECT *
        )
 ORDER BY JOB;
 ```
+
 |JOB|10|20|30|
 |--|---:|---|:---:|
 |ANALYST||3000||
@@ -145,6 +148,7 @@ ORDER BY JOB;
 |MANAGER|2450|2975|2850|
 |PRESIDENT|5000|||
 |SALESMAN|||1600|
+
 ```SQL
 SELECT *
   FROM(SELECT JOB, DEPTNO, SAL
@@ -158,6 +162,7 @@ SELECT *
       )
 ORDER BY DEPTNO;
 ```
+
 |DEPTNO|CLERK|SALESMAN|PRESIDENT|MANAGER|ANALYST|
 |--:|---:|---:|---:|--:|--:|
 |10|1300||5000|2450||
