@@ -183,26 +183,32 @@ ORDER BY DEPTNO;
 
 
 #### 잊기 전에 한번 더!
-Q1. 
+Q1. EMP 테이블을 이용하여 부서 번호, 평균 급여, 최고 급여, 최저 급여, 사원 수를 출력합니다.     
+단, 평균 급여를 출력할 때 소수점을 제외하고 각 부서 번호별로 출력하세요.    
+
 
 ![KakaoTalk_Photo_2022-07-25-15-51-03](https://user-images.githubusercontent.com/96704446/180715989-71302066-2ebc-4665-bea7-d89d6f650694.png)
 
-Q2.
+Q2. 같은 직책에 종사하는 사원이 3명 이상인 직책과 인원수를 출력하세요.     
+
 
 ![KakaoTalk_Photo_2022-07-25-15-51-06](https://user-images.githubusercontent.com/96704446/180716305-855a875a-d2e9-4c13-a214-a287b4d9b32d.png)
 
 
-Q3.
+Q3. 사원들의 입사연도를 기준으로 부서별로 몇 명이 입사했는지 출력하세요.    
+
 
 ![KakaoTalk_Photo_2022-07-25-15-51-10](https://user-images.githubusercontent.com/96704446/180716344-13be3b9f-ddb1-4bdc-a5a0-1083efdacb5b.png)
 
 
-Q4.
+Q4. 추가 수당을 받는 사원 수와 받지 않는 사원 수를 출력하세요.   
+
 
 ![KakaoTalk_Photo_2022-07-25-15-51-18](https://user-images.githubusercontent.com/96704446/180716388-2cd40cd5-3508-486d-9ed6-81711010b2a3.png)
 
 
-Q5.
+Q5. 각 부서의 입사 연도별 사원 수, 최고 급여, 급여 합, 평균 급여를 출력하고 각 부서별 소계와 총계를 출력하세요.    
+
 
 ![KakaoTalk_Photo_2022-07-25-15-51-14](https://user-images.githubusercontent.com/96704446/180716456-953ba946-e6e2-434e-b9f6-6a92e0fe5e88.png)
 
