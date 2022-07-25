@@ -4,8 +4,8 @@
 GROUP BY절에 지정할 수 있는 특수함수들
 ```sql
 -- 기존 GROUP BY절만 사용한 그룹
--- DEPTNO 로 먼저 큰 그룹을 만들고, JOB 으로 소그룹을 나눙 각 그룹에 해당하는 데이터 출력
-SELECT DEPTNO, JOB, COOUNT(*), MAX(SAL), SUM(SAL), AVG(SAL)
+-- DEPTNO 로 먼저 큰 그룹을 만들고, JOB 으로 소그룹을 나눈 각 그룹에 해당하는 데이터 출력
+SELECT DEPTNO, JOB, COUNT(*), MAX(SAL), SUM(SAL), AVG(SAL)
   FROM EMP
 GROUP BY DEPTNO, JOB
 ORDER BY DEPTNO, JOB;
