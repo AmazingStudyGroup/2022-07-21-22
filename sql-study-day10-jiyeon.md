@@ -50,7 +50,9 @@ SELECT DEPTNO, JOB, COUNT(*)
 GROUP BY GROUPING SETS(DEPTNO, JOB)
 ORDER BY DEPTNO, JOB;
 ```
-> 그룹화를 위해 지정한 열이 계층적으로 분류되지 않고 각각 따로 그룹화한 후 연산을 수행함
+> 그룹화를 위해 지정한 열이 계층적으로 분류되지 않고 각각 따로 그룹화한 후 연산을 수행함.       
+
+
 |DEPTNO|JOB|COUNT(*)|
 |---:|---|----:|
 |10||3|
