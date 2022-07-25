@@ -9,7 +9,11 @@ SELECT DEPTNO, JOB, COOUNT(*), MAX(SAL), SUM(SAL), AVG(SAL)
   FROM EMP
 GROUP BY DEPTNO, JOB
 ORDER BY DEPTNO, JOB;
+```
+![KakaoTalk_Photo_2022-07-25-15-45-20](https://user-images.githubusercontent.com/96704446/180714813-2066d90a-a326-4d1f-8477-70a0a8d5d957.png)
 
+
+```sql
 -- ROLL UP함수를 적용한 그룹화
 -- 각 부서의 직책별 사원수, 최고급여, 급여 합, 평균 급혀 출력 후 각 부서별 결과 출력
 -- 마지막에 테이블 전체 데이터를 대상으로 하여 출력
@@ -17,6 +21,8 @@ SELECT DEPTNO, JOB, COUNT(*), SUM(SAL), AVG(SAL)
   FROM EMP
 GROUP BY ROLLUP(DEPTNO, JOB);
 ```
+![KakaoTalk_Photo_2022-07-25-15-46-10](https://user-images.githubusercontent.com/96704446/180714987-3d85a5f6-b587-402e-ac07-5cb7c25f15cf.png)
+
 > ROLL UP함수에는 그룹함수 지정 불가
 ```sql
 -- CUBE함수를 적용한 그룹화
@@ -25,6 +31,8 @@ SELECT DEPTNO, JOB, COUNT(*), MAX(SAL), SUM(SAL), AVG(SAL)
 GROUP BY CUBE(DEPTNO, JOB)
 ORDER BY DEPTNO, JOB;
 ```
+![KakaoTalk_Photo_2022-07-25-15-47-53](https://user-images.githubusercontent.com/96704446/180715210-1d69efe1-b62f-43ce-a1fa-d4cd87d4eec3.png)
+
 ```
 ROLLUP(A, B, C) 
 1. A 그룹별 B 그룹별 C 그룹에 해당하는 결과 출력
@@ -175,30 +183,28 @@ ORDER BY DEPTNO;
 
 
 #### 잊기 전에 한번 더!
-```SQL
--- Q1
-SELECT DEPTNO, TRUNC(AVG(SAL)) AS AVG_SAL, 
-       MAX(SAL) AS MIN_SAL, COUNT(*) AS CNT
-  FROM EMP
-GROUP BY DEPTNO;
+Q1. 
 
--- Q2
-SELECT JOB, COUNT(*)
-  FROM EMP
- GROUP BY JOB
- HAVING COUNT(*) >= 3;
+![KakaoTalk_Photo_2022-07-25-15-51-03](https://user-images.githubusercontent.com/96704446/180715989-71302066-2ebc-4665-bea7-d89d6f650694.png)
 
--- Q3
-SELECT HIRE_YEAR, DEPTNO, COUNT(*) AS CNT
-  FROM EMP
- GROUP BY HIRE_YEAR, DEPTNO;
+Q2.
+
+![KakaoTalk_Photo_2022-07-25-15-51-06](https://user-images.githubusercontent.com/96704446/180716305-855a875a-d2e9-4c13-a214-a287b4d9b32d.png)
 
 
--- Q4
-SELECT NVL2(COMM, 'O', 'X') AS EXIST_COMM, COUNT(*)
-  FROM EMP
- GROUP BY NVL2(COMM, 'O', 'X'), COUNT(*);
+Q3.
 
--- Q5
+![KakaoTalk_Photo_2022-07-25-15-51-10](https://user-images.githubusercontent.com/96704446/180716344-13be3b9f-ddb1-4bdc-a5a0-1083efdacb5b.png)
 
-```
+
+Q4.
+
+![KakaoTalk_Photo_2022-07-25-15-51-18](https://user-images.githubusercontent.com/96704446/180716388-2cd40cd5-3508-486d-9ed6-81711010b2a3.png)
+
+
+Q5.
+
+![KakaoTalk_Photo_2022-07-25-15-51-14](https://user-images.githubusercontent.com/96704446/180716456-953ba946-e6e2-434e-b9f6-6a92e0fe5e88.png)
+
+
+
